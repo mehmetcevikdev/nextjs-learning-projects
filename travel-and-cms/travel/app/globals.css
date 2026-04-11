@@ -133,6 +133,10 @@
   @apply focus-visible:ring-0 focus-visible:ring-offset-0;
 }
 
+@theme {
+  --background-image-heroBg: url("/slider/bgswipe.jpg");
+}
+
 body {
   font-family:
     system-ui,
@@ -146,4 +150,8 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff6800 !important;
 }

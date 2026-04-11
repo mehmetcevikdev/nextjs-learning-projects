@@ -38,7 +38,7 @@ const RecentProduct = () => {
             delay: 2000,
           }),
         ]}
-        className="container mx-auto px-10 lg:px-28"
+        className="container mx-auto px-10 lg:px-16"
       >
         <CarouselContent>
           {packages.map((pkg, index) => (
