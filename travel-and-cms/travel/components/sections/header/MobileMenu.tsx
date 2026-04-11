@@ -1,0 +1,43 @@
+import React from "react";
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { navigationLinks } from "@/constans";
+import Link from "next/link";
+
+const MobileMenu = () => {
+  return (
+    <Sheet>
+      <SheetTrigger className="p-3 lg:hidden bg-orange-500 cursor-pointer text-white rounded-full">
+        <Menu />
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle className="text-3xl text-orange-500">Travel</SheetTitle>
+        </SheetHeader>
+        <div className=" flex flex-col gap-3 p-4">
+          {navigationLinks.map((navigation, index) => (
+            <Link
+              key={index}
+              href={navigation.href}
+              className="block   hover:text-orange-500"
+            >
+              {navigation.label}
+            </Link>
+          ))}
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+export default MobileMenu;
