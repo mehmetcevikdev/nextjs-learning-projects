@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { slides } from "@/constans";
 import React, { useState } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -13,6 +12,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
+import MainSearch from "./MainSearch";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,15 +45,13 @@ const Hero = () => {
               disableOnInteraction: false,
             }}
             pagination={{
-            clickable: true,
-          }}
+              clickable: true,
+            }}
             /* navigation={true} */
             loop={true}
             modules={[Autoplay, Pagination, Navigation]}
             className="w-full"
-            onSlideChange={(swiper=>(
-                setCurrentSlide(swiper.realIndex)
-            ))}
+            onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
@@ -70,6 +68,9 @@ const Hero = () => {
             ))}
           </Swiper>
         </div>
+
+        <MainSearch />
+        
       </div>
     </div>
   );
