@@ -1,9 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
-const dropInVariants = {
+const dropInVariants: Variants = {
   hidden: { y: -50, opacity: 0 },
   visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
 };
