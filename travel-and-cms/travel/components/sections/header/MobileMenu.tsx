@@ -25,13 +25,13 @@ const MobileMenu = () => {
           <SheetTitle className="text-3xl text-orange-500">Travel</SheetTitle>
         </SheetHeader>
         <div className=" flex flex-col gap-3 p-4">
-          {navigationLinks.map((navigation, index) => (
+          {navigationLinks.map((link, index) => (
             <Link
               key={index}
-              href={navigation.href}
+              href={link.href}
               className="block   hover:text-orange-500"
             >
-              {navigation.label}
+              {link.label}
             </Link>
           ))}
         </div>

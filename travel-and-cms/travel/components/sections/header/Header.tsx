@@ -1,3 +1,4 @@
+'use client'
 import { MessageCircle, Phone, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +7,12 @@ import { FaFacebook, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import MobileMenu from "./MobileMenu";
 import { navigationLinks } from "@/constans";
 import SearchPage from "./SearchPage";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+
+  const pathname = usePathname()
+
   const socialLinks = [
     { href: "#", icon: <FaFacebook size={16} /> },
     { href: "#", icon: <FaXTwitter size={16} /> },
@@ -58,13 +63,13 @@ const Header = () => {
           />
 
           <nav className="hidden lg:flex space-x-8 text-lg font-semibold ">
-            {navigationLinks.map((navigation, index) => (
+            {navigationLinks.map((link, index) => (
               <Link
                 key={index}
-                href={navigation.href}
-                className="hover:text-orange-500"
+                href={link.href}
+                className={`${link.href === pathname ? "text-orange-500":"hover:text-orange-500"}`}
               >
-                {navigation.label}
+                {link.label}
               </Link>
             ))}
           </nav>

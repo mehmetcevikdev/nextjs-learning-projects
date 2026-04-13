@@ -23,7 +23,7 @@ const Footer = () => {
     <footer className="relative bg-black text-white">
       <FooterCTA />
 
-      <div className="container mx-auto py-56 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8 ">
+      <div className="container mx-auto pb-28 pt-56 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8 ">
         <div className="lg:col-span-2 mt-16">
           <h3 className="text-2xl font-bold">Travel</h3>
           <p className="mt-4 text-sm">
@@ -47,13 +47,13 @@ const Footer = () => {
         <div className="useful-links-wrapper mt-16">
           <h4 className="text-xl font-bold mb-4">Useful Links</h4>
           <div className="space-y-2 text-sm">
-            {navigationLinks.map((navigation, index) => (
+            {navigationLinks.map((link, index) => (
               <Link
-                href={navigation.href}
+                href={link.href}
                 key={index}
                 className="block hover:text-orange-500"
               >
-                {navigation.label}
+                {link.label}
               </Link>
             ))}
           </div>
