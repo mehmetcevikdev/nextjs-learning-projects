@@ -21,8 +21,10 @@ const MainSearch = () => {
     price: "250-900", //Default price
   });
 
-  const handleChange = (key, value) => {
-    setFormValues((prev) => ({ ...prev, [key]: value }));
+  const handleChange = (key: keyof typeof formValues, value: string | null) => {
+    if (value) {
+      setFormValues((prev) => ({ ...prev, [key]: value }));
+    }
   };
 
   const handleSearch = () => {
