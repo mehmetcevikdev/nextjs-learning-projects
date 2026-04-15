@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { MessageCircle, Phone, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +10,7 @@ import SearchPage from "./SearchPage";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
-
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const socialLinks = [
     { href: "#", icon: <FaFacebook size={16} /> },
@@ -54,20 +53,22 @@ const Header = () => {
       {/*Navigation Bar */}
       <div className="bg-white h-28 text-black shadow flex items-center">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <Image
-            src={"/logo.png"}
-            alt="Travel"
-            width={210}
-            height={50}
-            className="w-36 lg:w-52 h-auto"
-          />
+          <Link href="/">
+            <Image
+              src={"/logo.png"}
+              alt="Travel"
+              width={210}
+              height={50}
+              className="w-36 lg:w-52 h-auto"
+            />
+          </Link>
 
           <nav className="hidden lg:flex space-x-8 text-lg font-semibold ">
             {navigationLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className={`${link.href === pathname ? "text-orange-500":"hover:text-orange-500"}`}
+                className={`${link.href === pathname ? "text-orange-500" : "hover:text-orange-500"}`}
               >
                 {link.label}
               </Link>

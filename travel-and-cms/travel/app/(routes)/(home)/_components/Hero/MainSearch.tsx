@@ -15,8 +15,8 @@ const MainSearch = () => {
   const router = useRouter();
 
   const [formValues, setFormValues] = useState({
-    destination: "paris", //Default destination
-    activity: "hiking", //Default activity
+    destination: "Paris", //Default destination
+    activity: "Hiking", //Default activity
     duration: "0-8", //Default duration
     price: "250-900", //Default price
   });
@@ -43,9 +43,9 @@ const MainSearch = () => {
             <SelectValue placeholder="Destination" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="paris">Paris</SelectItem>
-            <SelectItem value="new-york">New York</SelectItem>
-            <SelectItem value="tokyo">Tokyo</SelectItem>
+            <SelectItem value="Paris">Paris</SelectItem>
+            <SelectItem value="New York">New York</SelectItem>
+            <SelectItem value="Tokyo">Tokyo</SelectItem>
           </SelectContent>
         </Select>
         <Select
@@ -56,9 +56,9 @@ const MainSearch = () => {
             <SelectValue placeholder="Activity" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="hiking">Hiking</SelectItem>
-            <SelectItem value="swimming">Swimming</SelectItem>
-            <SelectItem value="sightseeing">Sightseeing</SelectItem>
+            <SelectItem value="Hiking">Hiking</SelectItem>
+            <SelectItem value="Swimming">Swimming</SelectItem>
+            <SelectItem value="Sightseeing">Sightseeing</SelectItem>
           </SelectContent>
         </Select>
         <Select
