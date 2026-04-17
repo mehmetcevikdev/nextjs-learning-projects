@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupTextarea } from "@/components/ui/input-group";
+import { toast } from "sonner";
 
 // 1. ŞEMA: Tamamen eğitmenin şu anki yapısına (name, email, message) ve hata mesajlarına uyarlandı.
 const formSchema = z.object({
@@ -47,26 +48,42 @@ const ContactForm = () => {
     },
   });
 
-  // 2. ONSUBMIT: Eğitmenin yaptığı gibi console.log eklendi, senin toast bildirimin korundu.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Eğitmenin adımı:
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Hata: ${response.status}`);
+      }
+
+      form.reset();
+
+      toast("You submitted the following values:", {
+        description: (
+          <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
+            <code>{JSON.stringify(values, null, 2)}</code>
+          </pre>
+        ),
+        position: "bottom-right",
+        classNames: {
+          content: "flex flex-col gap-2",
+        },
+        style: {
+          "--border-radius": "calc(var(--radius)  + 4px)",
+        } as React.CSSProperties,
+      });
+    } catch (error) {
+      console.log(error);
+      toast("An error occurred, please try again.");
+    }
 
     // Senin harika bildirimin:
-    /* toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-          <code>{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    }); */
   }
 
   return (
