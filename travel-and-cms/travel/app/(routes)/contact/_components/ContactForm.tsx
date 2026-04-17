@@ -1,6 +1,7 @@
 "use client";
+import ReCAPTCHA from "react-google-recaptcha";
 
-import * as React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 // import { toast } from "sonner";
@@ -36,15 +37,19 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
+  recaptcha: z.string().min(1, "Please verify that you are not a robot."),
 });
 
 const ContactForm = () => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      recaptcha: "",
     },
   });
 
@@ -165,6 +170,19 @@ const ContactForm = () => {
                 )}
               />
             </form>
+          </FieldGroup>
+          <FieldGroup className="mt-2 rounded-4xl">
+            <ReCAPTCHA
+              sitekey="6LcZXLwsAAAAANiehvTn6Kje2NQ2mnVfjoFhnuf2"
+              onChange={(token) => {
+                setRecaptchaToken(token);
+                form.setValue("recaptcha", token || "");
+              }}
+              onExpired={() => {
+                setRecaptchaToken(null);
+                form.setValue("recaptcha", "");
+              }}
+            />
           </FieldGroup>
         </CardContent>
         <CardFooter>
