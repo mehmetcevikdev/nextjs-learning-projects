@@ -5,7 +5,7 @@ async function downloadImages() {
   console.log("📸 Doğaçlama resim robotu (Bölüm 2) çalışıyor...");
 
   // SADECE 4, 5 ve 6. klasörleri hedef alıyoruz
-  const folders = ['hotel4', 'hotel5', 'hotel6'];
+  const folders = ['hotel7', 'hotel8', 'hotel9'];
   const publicPath = path.join(__dirname, 'public');
 
   if (!fs.existsSync(publicPath)) {

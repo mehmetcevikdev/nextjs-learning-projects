@@ -42,7 +42,7 @@ async function main() {
 
   console.log("🌱 Yeni veritabanı doldurma işlemi başlatılıyor...");
 
-  // 6 Adet Fake Otel
+  // 9 Adet Fake Otel
   const hotels = [
     {
       name: 'Grand Palace Hotel',
@@ -50,7 +50,7 @@ async function main() {
       location: 'Istanbul, Turkey',
       address: '123 Bosphorus Street, Istanbul',
       rating: 4.8,
-      photos: getHotelImages('hotel1'), // Senin fotoğrafların
+      photos: getHotelImages('hotel1'), 
       pricePerNight: 250.0,
     },
     {
@@ -59,7 +59,7 @@ async function main() {
       location: 'Alps, Switzerland',
       address: '45 Alpine Road, Switzerland',
       rating: 4.5,
-      photos: getHotelImages('hotel2'), // Senin fotoğrafların
+      photos: getHotelImages('hotel2'), 
       pricePerNight: 180.0,
     },
     {
@@ -68,7 +68,7 @@ async function main() {
       location: 'Malibu, USA',
       address: '678 Pacific Coast Highway, Malibu',
       rating: 4.7,
-      photos: getHotelImages('hotel3'), // Senin fotoğrafların
+      photos: getHotelImages('hotel3'), 
       pricePerNight: 220.0,
     },
     {
@@ -77,7 +77,7 @@ async function main() {
       location: 'New York City, USA',
       address: '123 Broadway, NYC',
       rating: 4.4,
-      photos: getHotelImages('hotel4'), // Robotun fotoğrafları
+      photos: getHotelImages('hotel4'), 
       pricePerNight: 150.0,
     },
     {
@@ -86,7 +86,7 @@ async function main() {
       location: 'Dubai, UAE',
       address: '45 Desert Dune Blvd, Dubai',
       rating: 4.9,
-      photos: getHotelImages('hotel5'), // Robotun fotoğrafları
+      photos: getHotelImages('hotel5'), 
       pricePerNight: 300.0,
     },
     {
@@ -95,9 +95,37 @@ async function main() {
       location: 'Black Forest, Germany',
       address: '78 Pine Tree Lane, Germany',
       rating: 4.6,
-      photos: getHotelImages('hotel6'), // Robotun fotoğrafları
+      photos: getHotelImages('hotel6'), 
       pricePerNight: 210.0,
     },
+    // --- YENİ EKLENEN 3 OTEL ---
+    {
+      name: 'Tokyo Skyline Hotel',
+      description: 'Experience the vibrant energy of Tokyo from a modern high-rise.',
+      location: 'Tokyo, Japan',
+      address: '1-1-1 Shinjuku, Tokyo',
+      rating: 4.8,
+      photos: getHotelImages('hotel7'), 
+      pricePerNight: 320.0,
+    },
+    {
+      name: 'Santorini Sunset Villas',
+      description: 'Iconic white and blue villas with a stunning view of the caldera.',
+      location: 'Santorini, Greece',
+      address: 'Oia Cliffs, Santorini',
+      rating: 4.9,
+      photos: getHotelImages('hotel8'), 
+      pricePerNight: 450.0,
+    },
+    {
+      name: 'Cape Town Safari Lodge',
+      description: 'A luxurious lodge blending nature with ultimate comfort.',
+      location: 'Cape Town, South Africa',
+      address: 'Table Mountain Road, Cape Town',
+      rating: 4.7,
+      photos: getHotelImages('hotel9'), 
+      pricePerNight: 280.0,
+    }
   ];
 
   for (const [index, hotelData] of hotels.entries()) {
@@ -126,7 +154,7 @@ async function main() {
     console.log(`✅ ${hotelData.name} ve 10 adet odası başarıyla eklendi!`);
   }
   
-  console.log("🎉 6 Otel ve tüm odalar MongoDB'ye başarıyla yüklendi!");
+  console.log("🎉 9 Otel ve tüm odalar MongoDB'ye başarıyla yüklendi!");
 }
 
 main()
