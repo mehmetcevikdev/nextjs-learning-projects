@@ -30,11 +30,36 @@ export async function POST(req: Request) {
       to: ["mehmet_cvk20@outlook.com"],
       subject: "Mail",
       html: `
-      <h2>Mail</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong> ${message}</p>
-      `,
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px;">
+    
+    <div style="background-color: #2563eb; padding: 24px; border-radius: 8px 8px 0 0; text-align: center;">
+      <h1 style="color: #ffffff; margin: 0; font-size: 22px;">📬 New Contact Message</h1>
+    </div>
+
+    <div style="background-color: #ffffff; padding: 32px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      
+      <div style="margin-bottom: 20px; padding: 16px; background-color: #f1f5f9; border-left: 4px solid #2563eb; border-radius: 4px;">
+        <p style="margin: 0 0 4px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Name</p>
+        <p style="margin: 0; font-size: 16px; color: #1e293b; font-weight: 600;">${name}</p>
+      </div>
+
+      <div style="margin-bottom: 20px; padding: 16px; background-color: #f1f5f9; border-left: 4px solid #2563eb; border-radius: 4px;">
+        <p style="margin: 0 0 4px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Email</p>
+        <a href="mailto:${email}" style="margin: 0; font-size: 16px; color: #2563eb; font-weight: 600; text-decoration: none;">${email}</a>
+      </div>
+
+      <div style="padding: 16px; background-color: #f1f5f9; border-left: 4px solid #2563eb; border-radius: 4px;">
+        <p style="margin: 0 0 8px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Message</p>
+        <p style="margin: 0; font-size: 15px; color: #1e293b; line-height: 1.6;">${message}</p>
+      </div>
+
+    </div>
+
+    <p style="text-align: center; font-size: 12px; color: #94a3b8; margin-top: 16px;">
+      This email was sent via your contact form.
+    </p>
+  </div>
+`,
     });
 
     console.log("Email sent:", emailResponse);

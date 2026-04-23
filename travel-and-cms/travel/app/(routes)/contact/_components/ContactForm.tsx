@@ -69,7 +69,7 @@ const ContactForm = () => {
 
       form.reset();
 
-      toast("You submitted the following values:", {
+      /* toast("You submitted the following values:", {
         description: (
           <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
             <code>{JSON.stringify(values, null, 2)}</code>
@@ -82,13 +82,12 @@ const ContactForm = () => {
         style: {
           "--border-radius": "calc(var(--radius)  + 4px)",
         } as React.CSSProperties,
-      });
+      }); */
     } catch (error) {
       console.log(error);
-      toast("An error occurred, please try again.");
+      /* toast("An error occurred, please try again."); */
     }
 
-    // Senin harika bildirimin:
   }
 
   return (
