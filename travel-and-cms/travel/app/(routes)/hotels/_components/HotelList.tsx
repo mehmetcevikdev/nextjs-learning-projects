@@ -1,5 +1,5 @@
 "use client";
-import { Hotel } from "@/lib/generated/prisma"; // veya prisma import yolun neyse
+import { Hotel } from "@prisma/client"; // veya prisma import yolun neyse
 import React, { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

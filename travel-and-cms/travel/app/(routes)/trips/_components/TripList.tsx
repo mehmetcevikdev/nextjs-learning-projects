@@ -1,5 +1,5 @@
 "use client";
-import { Hotel } from "@/lib/generated/prisma"; // veya prisma import yolun neyse
+import { Hotel } from "@prisma/client"; // veya prisma import yolun neyse
 import React, { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const filterSchema = z.object({
   rating: z.string().optional(),
@@ -26,10 +27,13 @@ const filterSchema = z.object({
 
 type FilterValues = z.infer<typeof filterSchema>;
 
-const HotelList = () => {
+const TripList = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const params = useSearchParams();
+  const router = useRouter();
 
   const form = useForm<FilterValues>({
     resolver: zodResolver(filterSchema),
@@ -50,9 +54,8 @@ const HotelList = () => {
     if (filters.priceMin) params.append("priceMin", filters.priceMin);
     if (filters.priceMax) params.append("priceMax", filters.priceMax);
 
-    if (params.toString()) {
-      url += "?" + params.toString();
-    }
+    url += "?" + params.toString();
+
     console.log(url);
 
     fetch(url)
@@ -68,12 +71,12 @@ const HotelList = () => {
       });
   };
 
- /*  useEffect(() => {
+  /*  useEffect(() => {
     fetchHotels();
   }, []); */
 
   // fetch datalardan otel cagirma islemi
-   useEffect(() => {
+  useEffect(() => {
     fetch("/api/hotels")
       .then((res) => res.json())
       .then((data) => {
@@ -85,7 +88,7 @@ const HotelList = () => {
         setError(true);
         setLoading(false);
       });
-  }, []); 
+  }, []);
 
   function onSubmit(values: FilterValues) {
     fetchHotels(values);
@@ -204,4 +207,4 @@ const HotelList = () => {
   );
 };
 
-export default HotelList;
+export default TripList;
