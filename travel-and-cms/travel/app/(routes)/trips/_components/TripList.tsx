@@ -1,6 +1,6 @@
 "use client";
-import type { Hotel } from "@prisma/client"; // veya prisma import yolun neyse
-import React, { useEffect, useState } from "react";
+import type { Hotel } from "@prisma/client";
+import React, { Suspense, useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
@@ -27,7 +27,7 @@ const filterSchema = z.object({
 
 type FilterValues = z.infer<typeof filterSchema>;
 
-const TripList = () => {
+const TripListContent = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -56,8 +56,6 @@ const TripList = () => {
 
     url += "?" + params.toString();
 
-    console.log(url);
-
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -78,25 +76,11 @@ const TripList = () => {
       priceMax: searchParams.get("priceMax") || "",
     };
 
-    form.reset(filters)
+    form.reset(filters);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchHotels(filters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
-  
-
-  // fetch datalardan otel cagirma islemi
-  /* useEffect(() => {
-    fetch("/api/hotels")
-      .then((res) => res.json())
-      .then((data) => {
-        setHotels(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(true);
-        setLoading(false);
-      });
-  }, []); */
 
   function onSubmit(values: FilterValues) {
     const params = new URLSearchParams();
@@ -192,13 +176,19 @@ const TripList = () => {
           {hotels.map((hotel) => (
             <Card key={hotel.id} className="shadow-md">
               <CardHeader>
-                <Image
-                  src={hotel.photos[0]}
-                  alt={hotel.name}
-                  className="w-full h-48 object-cover rounded"
-                  width={1000}
-                  height={1000}
-                />
+                {hotel.photos[0] ? (
+                  <Image
+                    src={hotel.photos[0]}
+                    alt={hotel.name}
+                    className="w-full h-48 object-cover rounded"
+                    width={1000}
+                    height={1000}
+                  />
+                ) : (
+                  <div className="w-full h-48 rounded bg-gray-200 flex items-center justify-center text-gray-500">
+                    Fotoğraf yok
+                  </div>
+                )}
                 <CardTitle>{hotel.rating}*</CardTitle>
                 <CardTitle className="text-lg font-semibold mt-2">
                   {hotel.name}
@@ -216,6 +206,14 @@ const TripList = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const TripList = () => {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-4">Yükleniyor...</div>}>
+      <TripListContent />
+    </Suspense>
   );
 };
 
