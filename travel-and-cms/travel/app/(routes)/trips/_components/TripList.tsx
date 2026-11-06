@@ -32,7 +32,7 @@ const TripList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const params = useSearchParams();
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const form = useForm<FilterValues>({
@@ -71,12 +71,20 @@ const TripList = () => {
       });
   };
 
-  /*  useEffect(() => {
-    fetchHotels();
-  }, []); */
+  useEffect(() => {
+    const filters: FilterValues = {
+      rating: searchParams.get("rating") || "",
+      priceMin: searchParams.get("priceMin") || "",
+      priceMax: searchParams.get("priceMax") || "",
+    };
+
+    form.reset(filters)
+    fetchHotels(filters);
+  }, [searchParams]);
+  
 
   // fetch datalardan otel cagirma islemi
-  useEffect(() => {
+  /* useEffect(() => {
     fetch("/api/hotels")
       .then((res) => res.json())
       .then((data) => {
@@ -88,16 +96,20 @@ const TripList = () => {
         setError(true);
         setLoading(false);
       });
-  }, []);
+  }, []); */
 
   function onSubmit(values: FilterValues) {
-    fetchHotels(values);
-    console.log(values); // şimdilik sadece konsola yaz
+    const params = new URLSearchParams();
+    if (values.rating) params.set("rating", values.rating);
+    if (values.priceMin) params.set("priceMin", values.priceMin);
+    if (values.priceMax) params.set("priceMax", values.priceMax);
+
+    router.push(`/trips?${params.toString()}`);
   }
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Hotels</h1>
+      <h1 className="text-2xl font-bold mb-4">Hotels UseSearchParams</h1>
 
       <form
         onSubmit={form.handleSubmit(onSubmit)}
