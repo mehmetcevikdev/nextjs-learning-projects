@@ -68,12 +68,12 @@ const HotelList = () => {
       });
   };
 
-  useEffect(() => {
+ /*  useEffect(() => {
     fetchHotels();
-  }, []);
+  }, []); */
 
   // fetch datalardan otel cagirma islemi
-  /* useEffect(() => {
+   useEffect(() => {
     fetch("/api/hotels")
       .then((res) => res.json())
       .then((data) => {
@@ -85,7 +85,7 @@ const HotelList = () => {
         setError(true);
         setLoading(false);
       });
-  }, []); */
+  }, []); 
 
   function onSubmit(values: FilterValues) {
     fetchHotels(values);

@@ -13,10 +13,10 @@ export async function GET(request: Request) {
   if (priceMin || priceMax) {
     const priceFilter: { gte?: number; lte?: number } = {};
     if (priceMin) {
-      priceFilter.gte = Number(priceMin);
+      priceFilter.gte = Number(priceMin); //gte minimum deger
     }
     if (priceMax) {
-      priceFilter.lte = Number(priceMax);
+      priceFilter.lte = Number(priceMax); //lte maximum deger
     }
     filters.push({ pricePerNight: priceFilter });
   }
